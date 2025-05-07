@@ -1,9 +1,13 @@
 import time
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"message": "FastAPI server is running"}
 
 @app.get("/process_query/")
 async def process_query(query: str):
