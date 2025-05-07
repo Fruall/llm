@@ -45,7 +45,7 @@ def get_sentiment(answer):
 def process_query(query):
     # Настройка ChromeOptions для undetected_chromedriver
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")  # Раскомментируйте, если хотите использовать headless режим
+    chrome_options.add_argument("--headless")  # Раскомментируйте, если хотите использовать headless режим
     chrome_options.add_argument("--disable-dev-shm-usage")  # Отключить использование общей памяти
     chrome_options.add_argument("--no-sandbox")  # Необходимый флаг для некоторых окружений
     chrome_options.add_argument("--remote-debugging-port=9222")  # Порт для отладки
