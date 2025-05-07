@@ -11,6 +11,9 @@ async def process_query(query: str):
     # Настройка Selenium
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Запуск без графического интерфейса
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Отключение ограничений на использование памяти
+    chrome_options.add_argument("--no-sandbox")  # Важный флаг для работы на сервере
+    chrome_options.add_argument("--remote-debugging-port=9222")  # Порт для отладки
     driver = webdriver.Chrome(options=chrome_options)
 
     try:
