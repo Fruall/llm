@@ -44,11 +44,16 @@ def get_sentiment(answer):
 # Function to process the query
 def process_query(query):
     # Настройка ChromeOptions для undetected_chromedriver
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Раскомментируйте, если хотите использовать headless режим
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Отключить использование общей памяти
-    chrome_options.add_argument("--no-sandbox")  # Необходимый флаг для некоторых окружений
-    chrome_options.add_argument("--remote-debugging-port=9222")  # Порт для отладки
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)"
+    chrome_options = uc.ChromeOptions()
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument('--headless=new')
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_argument("--disable-infobars")
+    chrome_options.add_argument(f"user-agent={user_agent}")
+    driver = uc.Chrome(options=chrome_options)
 
     try:
         # Используем undetected_chromedriver для обхода блокировок
