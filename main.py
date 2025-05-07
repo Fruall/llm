@@ -1,13 +1,10 @@
 import time
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import WebDriverException
 
 app = FastAPI()
-
-@app.get("/")
-async def root():
-    return {"message": "FastAPI server is running"}
 
 @app.get("/process_query/")
 async def process_query(query: str):
@@ -25,6 +22,12 @@ async def process_query(query: str):
 
         # Возвращаем результат
         return {"page_title": page_title}
+
+    except WebDriverException as e:
+        raise HTTPException(status_code=500, detail=f"Error with Selenium: {str(e)}")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
     finally:
         driver.quit()  # Закрытие браузера после выполнения запроса
