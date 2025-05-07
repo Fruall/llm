@@ -10,6 +10,7 @@ app = FastAPI()
 async def process_query(query: str):
     # Настройка ChromeOptions для undetected_chromedriver
     chrome_options = Options()
+    chrome_options.binary_location = "/usr/bin/google-chrome"
     chrome_options.add_argument("--headless")  # Запуск без графического интерфейса
     chrome_options.add_argument("--disable-dev-shm-usage")  # Отключение ограничений на использование памяти
     chrome_options.add_argument("--no-sandbox")  # Важный флаг для работы на сервере
