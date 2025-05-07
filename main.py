@@ -1,6 +1,6 @@
 import time
 from fastapi import FastAPI, HTTPException
-import undetected_chromedriver.v2 as uc
+import undetected_chromedriver as uc  # Теперь используется без .v2
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import WebDriverException
 
